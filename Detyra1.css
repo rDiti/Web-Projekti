@@ -1,0 +1,85 @@
+body{
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.klasa1{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: rgb(74, 98, 138);
+    color: white;
+    width: 100%;
+    padding: 20px;
+}
+.logo{
+    width: 80px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    border-radius: 8px;
+}
+.form-klasa2{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1px;
+}
+.form-klasa3{
+    background-color: rgb(185, 229, 232);
+    padding: 70px 33px;
+    border: 3px solid rgb(74, 98, 138);
+    border-radius: 16px;
+    box-shadow: 1px 2px rgba(74, 98, 138);
+    text-align: center;
+    width: 350px;
+}
+.form-klasa3 p{
+    font-size: 16px;
+    margin-bottom: 20px;
+    line-height: 1.5;
+    color: rgb(0, 0, 0);
+}
+input[type="email"],
+input[type="telefon"]{
+    width: 80%;
+    padding: 12px;
+    margin-bottom: 14px;
+    margin-top: 5px;
+    border: 2px solid rgb(156, 156, 156);
+    border-radius: 12px;
+    font-size: 12px;
+    outline: none;
+    box-sizing: border-box;
+    box-shadow: 1px 3px rgba(74, 98, 138, 0.5);
+}
+button{
+
+    padding: 6px 67px;
+    margin-top: 6px;
+    border: 3px solid rgb(42, 54, 99);
+    border-radius: 11px;
+    background-color: rgb(74, 98, 138);
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+button:hover{
+    background-color: rgb(26, 33, 48)
+}
+@media (max-width: 768px){
+    .klasa1{
+        flex-direction: column;
+        align-items: center;
+    }
+    .form-klasa3{
+        width: 90%;
+    }
+}
