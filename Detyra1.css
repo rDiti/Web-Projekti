@@ -16,15 +16,18 @@ body{
     background-color: rgb(74, 98, 138);
     color: white;
     width: 100%;
-    padding: 20px;
+    height: 15vh;
+   
 }
-.logo{
-    width: 80px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    border-radius: 8px;
+a .logo{
+    margin-left: 2%;
+    margin-right: 30%;
+    width: 13vw;
+    height: 10vh;
+   
 }
+    
+
 .form-klasa2{
     display: flex;
     align-items: center;
