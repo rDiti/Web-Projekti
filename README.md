@@ -1,1 +1,2 @@
-djema sjom tu dit me push/blendi
+djema sjom tu dit me push/blendi/Tasht e rregullojm 
+
