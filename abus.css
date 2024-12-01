@@ -1,0 +1,83 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    background-color: #f4f4f4;
+    color: #333;
+  }
+  
+  
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 40px;
+    background-color: #4a628a;
+    color: #fff;
+    height: 15vh;
+  }
+  
+  a .logo{
+    margin-left: 2%;
+    margin-right: 30%;
+    width: 13vw;
+    height: 10vh;
+   
+}
+    
+  
+  .about-btn {
+    padding: 8px 16px;
+    font-size: 16px;
+    color: #2c3e50;
+    background-color: #cfe4fc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .about-btn:hover {
+    background-color: #aed0f4;
+  }
+  
+ 
+  .about-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px); 
+    background-color: #f4f4f4;
+  }
+  
+  .about-card {
+    width: 90%;
+    max-width: 600px;
+    padding: 80px;
+    background-color: #d9f3f9;
+    border: 2px solid #b8e0e6;
+    border-radius: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .about-card p {
+    font-size: 16px;
+    color: #333;
+  }
+  
+  @media (max-width: 768px) {
+    .about-btn {
+      font-size: 14px;
+      padding: 6px 12px;
+    }
+  
+    .about-card p {
+     font-size: 20px;
+    }
+  }
