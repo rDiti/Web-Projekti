@@ -1,18 +1,37 @@
 <?php
-$hostname = "localhost";
-$username = "root";
-$password = ""; 
-$dbname = "test";
+include_once "session.php";
+include_once "Profile.php";
+include_once "Kursi.php";
+include_once "Vleresimet.php";
 
-$conn = mysqli_connect($hostname, $username, $password, $dbname);
 
-if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
+if (isset($_SESSION["user_id"])) {
+    $user_id = $_SESSION["user_id"];
+} else {
+    echo "User not logged in!";
 }
-echo "Connected successfully";
 
+
+$database = new DatabaseConnection();
+$db = $database->connect();
+
+
+$kursi = new Kursi($db);
+$user = new Profile($db);
+$rating = new Vleresimet($database);
+
+
+$useriSpecifik = $user->getUserById(3);
+$professor_id = $useriSpecifik["id"];
+$mesatarjaVleresimit = $rating->mesatarjaEProfes($professor_id);
+$allKurset = $kursi->getAllKurse();
+$count=0;
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $searchTerm = trim($_POST["search"]);
+    $searchResults = $kursi->searchCourses($searchTerm);
+}
 ?>
-
 
 
 
@@ -26,12 +45,7 @@ echo "Connected successfully";
     <script>
         function hamburgerPop() {
             var x = document.getElementById("hamburger");
-            var y = document.getElementById("LogIn_PopUp");
-            
-            
-            if(y.style.display === "flex"){
-
-            }else{
+       
                 if (x.style.display === "flex") {
                         x.style.display = "none";
                     
@@ -40,59 +54,11 @@ echo "Connected successfully";
                         x.style.display = "flex";
                         
                     }
-            }
         }
-        function LogInPop() {
-            var x = document.getElementById("hamburger");
-            var y = document.getElementById("LogIn_PopUp");
-                
-                y.style.display = "flex";
-                x.style.display = "none";           
-        }
-       
-
-        function LogInDown(){
-            var y = document.getElementById("LogIn_PopUp");
-            y.style.display = "none";
-        }
-        
-        
-
-        function LoggingIn(){
-            
-
-            const email = document.getElementById("e-mail").value.trim();
-            const password = document.getElementById("password").value.trim();
-            event.preventDefault();
-            if (!email || !password) {
-                alert("Please fill out all required fields.");
-                
-            }else{
-                var y = document.getElementById("LogIn_PopUp");
-                y.style.display = "none";
-                var MyAcc = document.getElementById("LogIn/MyAcc");
-                var logOut = document.getElementById("LogOut");
-
-                MyAcc.textContent = "My Account";
-                logOut.textContent = "Log Out"
-                logOut.style.pointerEvents = "visible";
-                MyAcc.style.pointerEvents = "none";
-                alert("You have been logged in.");
-            }
-        }
-        
           
         function LogOut(){
             alert("You have been logged out.");
-            var x = document.getElementById("hamburger");
-                x.style.display = "none";     
-            var MyAcc = document.getElementById("LogIn/MyAcc");
-            var logOut = document.getElementById("LogOut");
-
-                MyAcc.textContent = "Log In";
-                logOut.textContent = ""
-                logOut.style.pointerEvents = "none";
-                MyAcc.style.pointerEvents = "visible";     
+          
 
         }
       
@@ -101,175 +67,70 @@ echo "Connected successfully";
 </head>
 <body>
     
-    <div id="LogIn_PopUp">
-        
-        
-        <form action="#">
-            <input type="email" name="e-mail" id="e-mail" placeholder="Email..." required>
-        
-            <input type="password" name="pasword" id="password" placeholder="Password..." required> 
-            
-            <input type="submit" value="Log In"class="logInBtn" id="logInBtn"  onclick="LoggingIn()">
-        </form>
-        
-            <a href="Detyra1.html">Forgot Password?</a>
-            <p>Don't have an account?</p>
-            <a href="Detyra2.html">Sign Up!</a> 
-        
-            
-            <img src="close.png" alt="closebtn" onclick="LogInDown()">
-        
-       
-        
-    </div>
+    
 
     <div class="navbar">
         <a href="Homepage.html" class="Logo">
             <img src="logo_transparent.png" alt="Logo" class="Logo">       
         </a>
-        <input type="search" class="Search" placeholder="🔍Search">
+        <form action="" class="search" method="post">
+             <input type="text" name="search" class="Search" placeholder="🔍Search">
+        </form> 
+       
        
             <img src="hamburger.png" alt="Hamburger" class="Hamburger-Img" onclick="hamburgerPop()">
               
     </div>
     
     <div id="hamburger">            
-        <a href="#" onclick="LogInPop()" id="LogIn/MyAcc">Log In</a>
+        <a href="MyProfile.php" >My Profile</a>
         <a href="abtus.php">About Us</a>
         <a href="contact.php">Contact Us</a>
-        <a href="#" class="LogOut" id="LogOut" onclick="LogOut()"></a>
+        <a href="login.php" id="LogOut"  onclick="LogOut()">Log Out</a>
+      
+       
     </div>
    <br><br><br>
-    <div  class="container">
-        
-        <div class="Darker-kurs">
-            <img src="profile.png" alt="foto">
-            <p class="e">emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        
-        <div class="Lighter-kurs">
-            <img src="profile.png" alt="foto">
-            <p>emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        <div class="Darker-kurs">
-            <img src="profile.png" alt="foto">
-            <p class="e">emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingsHalf_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        
-        <div class="Lighter-kurs">
-            <img src="profile.png" alt="foto">
-            <p>emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingsHalf_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        <div class="Darker-kurs">
-            <img src="profile.png" alt="foto">
-            <p class="e">emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingsHalf_transparent.png" alt="ratings?">
-            </div>    
-        </div>
-        <hr>
-        
-        <div class="Lighter-kurs">
-            <img src="profile.png" alt="foto">
-            <p>emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        <div class="Darker-kurs">
-            <img src="profile.png" alt="foto">
-            <p class="e">emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingsHalf_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        
-        <div class="Lighter-kurs">
-            <img src="profile.png" alt="foto">
-            <p>emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingGood_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        <div class="Darker-kurs">
-            <img src="profile.png" alt="foto">
-            <p class="e">emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingsHalf_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-            </div>
-        </div>
-        <hr>
-        
-        <div class="Lighter-kurs">
-            <img src="profile.png" alt="foto">
-            <p>emri profes</p>
-            <p>lenda</p>
-            <p>nr tel</p>
-            <div>
-                <img src="ratingBad_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-                <img src="ratingBad_transparent.png" alt="ratings?">
-            </div>
-        </div>
-     
+   <div class="container">
+   
+             <?php foreach ($allKurset as $kurset): ?>
+                <?php $count++; ?>
+                <div class="kurs" style="background-color: <?php echo ($count % 2 == 0) ? 'rgb(122, 178, 211);' : 'rgb(223, 242, 235);'; ?>;">
+                    <img src="<?php echo htmlspecialchars($useriSpecifik['image_path']); ?>" alt="profil">
+                    <p><?php echo htmlspecialchars($useriSpecifik['Emri']);?> <?php echo htmlspecialchars($useriSpecifik['Mbiemri'])?> </p>
+                    <p><?php echo htmlspecialchars($kurset['lenda']);?></p>
+                    <p><?php echo htmlspecialchars($useriSpecifik['Nr_tel']);?></p>
 
+                    <?php if($mesatarjaVleresimit == 0): ?>
+                        <img src="vleresimi0.png" alt="ratings?" class="ratings">
 
-    </div>
+                        <?php elseif($mesatarjaVleresimit>0 && $mesatarjaVleresimit<=0.5):?>
+                            <img src="vleresimi0.5.png" alt="ratings?" class="ratings">
+
+                        <?php elseif($mesatarjaVleresimit>0.5 && $mesatarjaVleresimit<=1):?>
+                            <img src="vleresimi1.png" alt="ratings?" class="ratings">
+
+                        <?php elseif($mesatarjaVleresimit>0.5 && $mesatarjaVleresimit<=1):?>
+                            <img src="vleresimi1.png" alt="ratings?" class="ratings">
+
+                        <?php elseif($mesatarjaVleresimit>1 && $mesatarjaVleresimit<=1.5):?>
+                            <img src="vleresimi1.5.png" alt="ratings?" class="ratings">
+
+                        <?php elseif($mesatarjaVleresimit>1.5 && $mesatarjaVleresimit<=2):?>
+                            <img src="vleresimi2.png" alt="ratings?" class="ratings">
+
+                        <?php elseif($mesatarjaVleresimit>2 && $mesatarjaVleresimit<=2.5):?>
+                            <img src="vleresimi2.5.png" alt="ratings?" class="ratings">
+                        <?php else:?>
+                            <img src="vleresimi3.png" alt="ratings?" class="ratings"> 
+                            
+                    <?php endif?>        
+                    <a href="infoKurs.php?kurs_id=<?php echo $kurset['kurs_id']; ?>">VIEW</a>
+                </div>
+                    <hr>
+            <?php endforeach; ?>
+        
+    </div>    
  
 </body>
 </html>
