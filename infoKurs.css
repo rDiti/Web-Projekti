@@ -1,0 +1,190 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+#LogIn_PopUp{
+    display: none;
+    flex-direction: column;
+    position: fixed;
+    background-color: rgb(185, 229, 232); 
+    left: 35vw;
+    top:20vh;
+    border-radius: 10px;
+    border: solid 3px;
+    border-color:  rgb(74, 98, 138);
+    z-index: 4;
+    width: 30vw;
+    height: 60vh;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 0 2000px rgba(0,0,0,0.35);
+}
+#LogIn_PopUp{
+    text-align: center;
+}
+#LogIn_PopUp input{
+    margin: 2vh;
+    width: 15vw;
+    height: 4vh;
+    box-shadow: -5px 5px 0 0  rgba(0,0,0,0.25);
+    border: none;
+    border-radius: 2px;
+    
+}
+#LogIn_PopUp input::placeholder{
+    font-size: 1vw;
+    text-align: start;
+}
+#LogIn_PopUp a{
+    margin-bottom: 2vh;
+    font-size: 1.5vw;
+    align-self: center;
+}
+#LogIn_PopUp p{
+    
+    font-size: 1.5vw;
+}
+
+
+.logInBtn{
+    height: 6vh;
+    width: 15vw;
+    box-shadow: -5px 5px 0 0  rgba(0,0,0,0.25);
+    
+    background-color:  rgb(42, 54, 99);
+    border:none;
+    border-radius: 5px;
+    margin: 2vh;
+    color: white;
+    }
+.logInBtn:hover{
+    cursor: pointer;
+    background-color: rgb(74, 98, 138);
+  
+    
+}
+#LogIn_PopUp img{
+    width: 3vw;
+    height: 6vh;
+   
+   
+
+}
+
+
+.navbar{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    background-color: rgb(74, 98, 138);
+    height: 15vh;
+    align-items: center;
+    position:fixed;
+    z-index: 3;
+   
+}
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;   
+    z-index: 1;
+    background-color: rgb(252, 252, 252);
+    background: 100%;
+   
+}
+.container p{
+
+    width: 90%;
+    height: 30vh;
+    background-color: rgb(185,229,232);
+    border: 0.25vw solid;
+    border-color: rgb(74, 98, 138);
+    text-align: center;
+    padding: 2%;
+    font-size: 2vw;
+    margin-bottom: 20vh;
+   
+}
+.butonat{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+
+.butonat input{
+    width: 5vw;
+    height: 5vh;
+}
+ button{
+    background-color: rgb(74, 98, 138);
+    color:white;  
+    border: 0.2vw solid;
+    border-color:  rgb(42, 54, 99);
+    border-radius: 10px; 
+    width: 15vw;
+    height: 7vh;
+    font-size: 3vh;
+   
+}
+ button:hover{
+    background-color: rgb(42, 54, 99);
+    border: 0.2vw solid;
+    border-color:  rgb(74, 98, 138);
+}
+
+
+.profili{
+    margin-left: 2%;
+    margin-right: 10%;
+    width: 13vw;
+    height: 10vh;
+
+   
+}
+.navbar p{
+    background-color: rgb(185,229,232);
+    border-radius: 5px;
+    padding: 0.5%;
+    margin-left:8% ;
+    margin-right: 8%;
+    width: 15vw;
+    text-align: center;
+    font-size: 2vh;
+}
+.phone{
+    background-color: rgb(185,229,232);
+    border-radius: 5px;
+    padding: 0.5%;
+    margin-left:8% ;
+    margin-right: 8%;
+    width: 15vw;
+    text-align: center;
+    font-size: 2vh;
+    display: visible;
+}
+.ratings{
+    background-color: rgb(185,229,232);
+    border-radius: 5px;
+    padding: 0.5%;
+    margin-left:8% ;
+    margin-right: 8%;
+    width: 15vw;
+    text-align: center;
+    font-size: 2vh;
+    display: visible;
+}
+
+
+
+
+.Close-Img{
+   height: 8vh;
+   width: 8vw;
+}
+
+
